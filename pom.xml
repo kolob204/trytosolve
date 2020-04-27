@@ -1,126 +1,102 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.solveerrors</groupId>
-  <artifactId>tempsolve2</artifactId>
-  <version>1.0</version>
-
-
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.solveerrors</groupId>
+    <artifactId>tempsolve2</artifactId>
+    <version>1.0</version>
   
-  <properties>
-  		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  		
-	  	<allure-testng.version>2.13.1</allure-testng.version>
-	  	<maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>	
-	  	<aspectj.version>1.9.5</aspectj.version> 
-	  	<allure.version>1.5.2</allure.version>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <allure-testng.version>2.13.2</allure-testng.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>	
+        <aspectj.version>1.8.14</aspectj.version>         
+    </properties>
     
-<dependencies>
-     
+    <dependencies>
         <dependency>
-	      <groupId>com.codeborne</groupId>
-	      <artifactId>selenide</artifactId>
-	      <version>5.9.0</version>
-	      <scope>compile</scope>
-    	</dependency>
-    
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.0.0</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Allure -->
-		<dependency>
-		     <groupId>io.qameta.allure</groupId>
-		     <artifactId>allure-testng</artifactId>
-		     <version>2.13.1</version>
-	    </dependency>
-	
-	 <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-testng-adaptor</artifactId>
-            <version>${allure.version}</version>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.10.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>            
+        </dependency>    
+    
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.1.0</version>
+        </dependency>
+
+        <!-- Allure -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure-testng.version}</version>
         </dependency>
  
- 
-	   <dependency>
+        <dependency>
             <groupId>ru.yandex.qatools.ashot</groupId>
             <artifactId>ashot</artifactId>
             <version>1.5.4</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-remote-driver</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-api</artifactId>
+                </exclusion>    
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>                            
+            </exclusions>            
         </dependency>
 	
-	
-	    <dependency>
+        <dependency>
             <groupId>com.relevantcodes</groupId>
             <artifactId>extentreports</artifactId>
             <version>2.41.2</version>
         </dependency>
 	 
-	 	 <!-- log4j Loggger -->
+        <!-- log4j Loggger -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
         
-	   <dependency>
-	       <groupId>org.slf4j</groupId>
-	       <artifactId>slf4j-api</artifactId>
-	       <version>1.7.30</version>
-	   </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
+        </dependency>
 	   
-	   
-	    <dependency>
-	        <groupId>org.slf4j</groupId>
-	        <artifactId>slf4j-log4j12</artifactId>
-	        <version>1.7.30</version>
-         </dependency>
-
-
-   
-    <dependency>
-	    <groupId>io.github.bonigarcia</groupId>
-	    <artifactId>webdrivermanager</artifactId>
-	    <version>3.8.1</version>
-    </dependency>
-    
-     
- 	<dependency>
- 		<groupId>org.seleniumhq.selenium</groupId>
- 		<artifactId>selenium-support</artifactId>
- 		<version>3.141.59</version>
- 	</dependency>
-
- 		
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.30</version>
+        </dependency>
  	     
-</dependencies>
-
-
-
+    </dependencies>
  
-<build>
-   <finalName>tempsolve2</finalName>
+    <build>
+        <finalName>tempsolve2</finalName>
    
-    <sourceDirectory> src/main/java</sourceDirectory>
-    <testSourceDirectory> src/test/java</testSourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
         <resources>
-             <resource>
-                  <directory>resources</directory>
-             </resource>
+            <resource>
+                <directory>resources</directory>
+            </resource>
         </resources>    
         
-        
-  <plugins>
- 
-             <plugin>
+        <plugins>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-eclipse-plugin</artifactId>
                 <version>2.10</version>
@@ -140,14 +116,12 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            
       
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
-				<configuration>
-				
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>TestCase.xml</suiteXmlFile> 
                     </suiteXmlFiles>
@@ -164,8 +138,6 @@
                 </dependencies>
             </plugin>
       
-  </plugins>
-  
-</build>
-
+        </plugins>
+    </build>
 </project>
