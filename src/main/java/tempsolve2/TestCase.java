@@ -24,36 +24,26 @@ import io.qameta.allure.Description;
 public class TestCase {
 
 	@BeforeSuite
+	@BeforeSuite
 	public void setUp() {
-
 		BasicConfigurator.configure();
 		System.setProperty("log4j.configurationFile", "Log4j.properties");
 
-//		System.setProperty("webdriver.chrome.driver","../chromedriver/chromedriver_80.exe");
-		WebDriverManager.chromedriver().setup();
-
-		System.setProperty("selenide.browser", "chrome");
-		System.setProperty("webdriver.chrome.silentOutput", "true"); // THIS will surpress all logs expect INFO
-
-		Configuration.browser = "chrome";
-		// Configuration.browserVersion = "80";
-
-		Configuration.baseUrl = "http://mail.yandex.ru";
+                WebDriverManager.chromedriver().setup();
+                System.setProperty("webdriver.chrome.driver", WebDriverManager.chromedriver().getBinaryPath());
+                
+                Configuration.baseUrl = "http://mail.yandex.ru";
+                //System.setProperty("webdriver.chrome.silentOutput", "true"); // THIS will surpress all logs expect INFO
 
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--log-level=0");
-
 		WebDriverRunner.setWebDriver(new ChromeDriver(options));
-
 		// WebDriverRunner.addListener(new EventListener());
-
 	}
 
-	@Test(priority = 1)
-	@Description("описание")
+	@Test(description = "описание", priority = 1)
 	public void TestCaseTest() {
 		open(Configuration.baseUrl);
-
 	}
 
 	@AfterSuite
